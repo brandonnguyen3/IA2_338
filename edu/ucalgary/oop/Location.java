@@ -1,13 +1,12 @@
-
 package edu.ucalgary.oop;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class Location {
     private String name;
     private String address;
-    private ArrayList<DisasterVictim> occupants = new ArrayList<>(); // Initialized
-    private ArrayList<Supply> supplies = new ArrayList<>(); // Initialized
+    private LinkedList<DisasterVictim> occupants = new LinkedList<>(); // Initialized
+    private LinkedList<Supply> supplies = new LinkedList<>(); // Initialized
 
     // Constructor
     public Location(String name, String address) {
@@ -34,23 +33,23 @@ public class Location {
     }
 
     // Getter for occupants
-    public ArrayList<DisasterVictim> getOccupants() {
-        return new ArrayList<>(occupants); // Return a copy to maintain encapsulation
+    public LinkedList<DisasterVictim> getOccupants() {
+        return new LinkedList<>(occupants); // Return a copy to maintain encapsulation
     }
 
     // Setter for occupants
-    public void setOccupants(ArrayList<DisasterVictim> occupants) {
-        this.occupants = new ArrayList<>(occupants); // Clear and addAll in one step, maintains encapsulation
+    public void setOccupants(LinkedList<DisasterVictim> occupants) {
+        this.occupants = new LinkedList<>(occupants); // Clear and addAll in one step, maintains encapsulation
     }
 
     // Getter for supplies
-    public ArrayList<Supply> getSupplies() {
-        return new ArrayList<>(supplies); // Return a copy to maintain encapsulation
+    public LinkedList<Supply> getSupplies() {
+        return new LinkedList<>(supplies); // Return a copy to maintain encapsulation
     }
 
     // Setter for supplies
-    public void setSupplies(ArrayList<Supply> supplies) {
-        this.supplies = new ArrayList<>(supplies); // Clear and addAll in one step, maintains encapsulation
+    public void setSupplies(LinkedList<Supply> supplies) {
+        this.supplies = new LinkedList<>(supplies); // Clear and addAll in one step, maintains encapsulation
     }
 
     // Add an occupant to occupants
