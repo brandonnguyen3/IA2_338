@@ -1,9 +1,11 @@
 package edu.ucalgary.oop;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
-// Parent class
+/*
+Date class which MedicalRecord, ReliefService, and DisasterVictim will inherit from.
+ */
 class Date {
     private int day;
     private int month;
@@ -41,18 +43,31 @@ class Date {
         this.year = year;
     }
 
-    // Method to display date
-    public void displayDate() {
-        System.out.println(day + "/" + month + "/" + year);
+    /*setDate is used to turn the string into integers and pass those in the setters.  */
+    public void setDate(String date) {
+        if (!isValidDateFormat(date)) {
+            throw new IllegalArgumentException("Invalid date format. Expected format: YYYY-MM-DD");
+        } 
+        String[] parts = date.split("-");
+        this.year = Integer.parseInt(parts[0]);
+        this.month = Integer.parseInt(parts[1]);
+        this.day = Integer.parseInt(parts[2]);
     }
 
-    // Method to calculate age\
-    /* 
-    public int calculateAge() {
-        LocalDate currentDate = LocalDate.now();
-        LocalDate birthDate = LocalDate.of(year, month, day);
-        Period period = Period.between(birthDate, currentDate);
-        return period.getYears();
+    /*getDate retrieves the entire date and returns a string with the parts.*/
+    public String getDate() {
+        return String.format("%04d-%02d-%02d", year, month, day);
     }
-    */
+
+    //used to check that it is in the format of YYYY-MM-DD
+    public boolean isValidDateFormat(String date) {
+        try {
+            LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+       
+
 }
