@@ -1,7 +1,8 @@
 /*
-Copyright Ann Barcomb and Khawla Shnaikat, 2024
+Adapted forom Ann Barcomb and Khawla Shnaikat, 2024
 Licensed under GPL v3
-See LICENSE.txt for more information.
+Author: Brandon Nguyen
+Date: 03/12/2024
 */
 package edu.ucalgary.oop;
 
@@ -15,6 +16,7 @@ public class LocationTest {
     private DisasterVictim victim;
     private Supply supply;
 
+    //code that was provided
     @Before
     public void setUp() {
         // Initializing test objects before each test method

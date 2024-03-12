@@ -1,3 +1,7 @@
+/*
+ * Author: Brandon Nguyen
+ * Date: 03/12/2024
+ */
 package edu.ucalgary.oop;
 
 import java.time.LocalDate;
@@ -69,5 +73,4 @@ class Date {
         }
     }
        
-
 }
