@@ -1,7 +1,17 @@
 /*
-Copyright Ann Barcomb and Khawla Shnaikat, 2024
+Adapted from Ann Barcomb and Khawla Shnaikat, 2024
 Licensed under GPL v3
 See LICENSE.txt for more information.
+
+
+Note that the following classes will use the database 
+addInquirerDatabase()
+removeInquirerDatabase()
+retrieveInquirerDatabase()
+
+I plan on implementing Requirement 5, 6 and 7 using the database. 
+Requirement 5: A log of interactions makes the most sense if it was saved on the database. 
+Requirement 6: 
 */
 package edu.ucalgary.oop;
 

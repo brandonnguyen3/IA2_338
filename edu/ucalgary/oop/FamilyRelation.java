@@ -1,3 +1,9 @@
+/*
+ * FamilyRelation
+ * Author: Brandon Nguyen
+ * Date: 03/12
+ */
+
 package edu.ucalgary.oop;
 
 public class FamilyRelation {
@@ -10,6 +16,10 @@ public class FamilyRelation {
         this.personOne = personOne;
         this.relationshipTo = relationshipTo;
         this.personTwo = personTwo;
+
+        // Ensure a two-sided relationship
+        personOne.addFamilyConnection(this);
+        personTwo.addFamilyConnection(this);
     }
 
     // Getter and setter for personOne

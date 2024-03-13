@@ -187,7 +187,3 @@ public class DisasterVictim {
    
 }
 
-
-
-
-

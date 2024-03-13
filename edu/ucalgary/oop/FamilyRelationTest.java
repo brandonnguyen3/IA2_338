@@ -3,6 +3,13 @@ Copyright Ann Barcomb and Khawla Shnaikat, 2024
 Licensed under GPL v3
 See LICENSE.txt for more information.
 */
+
+
+/*
+FamilyRelationTest
+Author: Brandon Nguyen
+Date: 03/12/2024
+ */
 package edu.ucalgary.oop;
 
 
@@ -15,7 +22,15 @@ public class FamilyRelationTest {
     private DisasterVictim personTwo = new DisasterVictim("Jane Dalan", "2024-02-20");
     private String relationshipTo = "sibling";
     private FamilyRelation testFamilyRelationObject = new FamilyRelation(personOne, relationshipTo, personTwo);
-    
+
+    /*testRelationConsistency should test that personTwo has a relationship to personOne
+    without the user implicitly setting it. 
+    */
+    @Test 
+    public void testRelationConsistency() {
+        assertEquals("personOne's relation and personTwo's relation should be equal", personOne.getFamilyConnections(), personTwo.get)
+    }
+
     @Test
     public void testObjectCreation() {
         assertNotNull(testFamilyRelationObject);
