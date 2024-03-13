@@ -1,10 +1,10 @@
+/*Modified DisasterVictim to now use linked lists.  */
+
 package edu.ucalgary.oop;
 
+import java.util.LinkedList;
 import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
 import java.time.LocalDate;
-
 
 public class DisasterVictim {
     private static int counter = 0;
@@ -13,9 +13,9 @@ public class DisasterVictim {
     private String lastName;
     private String dateOfBirth;
     private final int ASSIGNED_SOCIAL_ID;
-    private ArrayList<FamilyRelation> familyConnections = new ArrayList<>();
-    private ArrayList<MedicalRecord> medicalRecords = new ArrayList<>();
-    private Supply[] personalBelongings;
+    private List<FamilyRelation> familyConnections = new LinkedList<>();
+    private List<MedicalRecord> medicalRecords = new LinkedList<>();
+    private List<Supply> personalBelongings = new LinkedList<>();
     private final String ENTRY_DATE;
     private String gender;
     private String comments;
@@ -27,7 +27,6 @@ public class DisasterVictim {
         }
         this.ENTRY_DATE = ENTRY_DATE;
         this.ASSIGNED_SOCIAL_ID = generateSocialID();
-        
     }
 
     private static int generateSocialID() {
@@ -40,7 +39,6 @@ public class DisasterVictim {
         return date.matches(dateFormatPattern);
     }
 
-  
     // Getters and setters
 
     public String getFirstName() {
@@ -74,77 +72,41 @@ public class DisasterVictim {
         return ASSIGNED_SOCIAL_ID;
     }
 
-  public FamilyRelation[] getFamilyConnections() {
-        return familyConnections.toArray(new FamilyRelation[0]);
+    public List<FamilyRelation> getFamilyConnections() {
+        return new LinkedList<>(familyConnections);
     }
 
-    public MedicalRecord[] getMedicalRecords() {
-        return medicalRecords.toArray(new MedicalRecord[0]);
+    public List<MedicalRecord> getMedicalRecords() {
+        return new LinkedList<>(medicalRecords);
     }
 
-    public Supply[] getPersonalBelongings() {
-        return this.personalBelongings;
+    public List<Supply> getPersonalBelongings() {
+        return new LinkedList<>(personalBelongings);
     }
 
-    // The add and remove methods remain correct.
-    
     // Correct the setters to accept Lists instead of arrays
-    public void setFamilyConnections(FamilyRelation[] connections) {
+    public void setFamilyConnections(List<FamilyRelation> connections) {
         this.familyConnections.clear();
-        for (FamilyRelation newRecord : connections) {
-            addFamilyConnection(newRecord);
-        }
+        this.familyConnections.addAll(connections);
     }
 
-    public void setMedicalRecords(MedicalRecord[] records) {
+    public void setMedicalRecords(List<MedicalRecord> records) {
         this.medicalRecords.clear();
-        for (MedicalRecord newRecord : records) {
-            addMedicalRecord(newRecord);
-        }
+        this.medicalRecords.addAll(records);
     }
 
-    public void setPersonalBelongings(Supply[] belongings) {
-        this.personalBelongings = belongings;
+    public void setPersonalBelongings(List<Supply> belongings) {
+        this.personalBelongings = new LinkedList<>(belongings);
     }
 
     // Add a Supply to personalBelonging
     public void addPersonalBelonging(Supply supply) {
-
-        if (this.personalBelongings == null) {
-            Supply tmpSupply[] = { supply };
-            this.setPersonalBelongings(tmpSupply);
-            return;
-        }
-
-        // Create an array one larger than the previous array
-        int newLength = this.personalBelongings.length + 1;
-        Supply tmpPersonalBelongings[] = new Supply[newLength];
-
-        // Copy all the items in the current array to the new array
-        int i;
-        for (i=0; i < personalBelongings.length; i++) {
-            tmpPersonalBelongings[i] = this.personalBelongings[i];
-        }
-
-        // Add the new element at the end of the new array
-        tmpPersonalBelongings[i] = supply;
-
-        // Replace the original array with the new array
-        this.personalBelongings = tmpPersonalBelongings;
+        this.personalBelongings.add(supply);
     }
 
-    // Remove a Supply from personalBelongings, we assume it only appears once
+    // Remove a Supply from personalBelongings
     public void removePersonalBelonging(Supply unwantedSupply) {
-        Supply[] updatedBelongings = new Supply[personalBelongings.length-1];
-        int index = 0;
-        int newIndex = index;
-        for (Supply supply : personalBelongings) {
-            if (!supply.equals(unwantedSupply)) {
-                updatedBelongings[newIndex] = supply;
-                newIndex++;
-            }
-            index++;
-        }
+        this.personalBelongings.remove(unwantedSupply);
     }
 
     public void removeFamilyConnection(FamilyRelation exRelation) {
@@ -154,7 +116,6 @@ public class DisasterVictim {
     public void addFamilyConnection(FamilyRelation record) {
         familyConnections.add(record);
     }
-
 
     // Add a MedicalRecord to medicalRecords
     public void addMedicalRecord(MedicalRecord record) {
@@ -170,7 +131,7 @@ public class DisasterVictim {
     }
 
     public void setComments(String comments) {
-        this.comments =  comments;
+        this.comments = comments;
     }
 
     public String getGender() {
@@ -183,7 +144,4 @@ public class DisasterVictim {
         }
         this.gender = gender.toLowerCase(); // Store in a consistent format
     }
-
-   
 }
-

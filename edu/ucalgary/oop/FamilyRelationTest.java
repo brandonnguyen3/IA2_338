@@ -23,13 +23,17 @@ public class FamilyRelationTest {
     private String relationshipTo = "sibling";
     private FamilyRelation testFamilyRelationObject = new FamilyRelation(personOne, relationshipTo, personTwo);
 
-    /*testRelationConsistency should test that personTwo has a relationship to personOne
+    /*
+    testRelationConsistency should test that personTwo has a relationship to personOne
     without the user implicitly setting it. 
-    */
+    
     @Test 
     public void testRelationConsistency() {
         assertEquals("personOne's relation and personTwo's relation should be equal", personOne.getFamilyConnections(), personTwo.get)
     }
+    */
+
+    //test getPersonTwo
 
     @Test
     public void testObjectCreation() {
