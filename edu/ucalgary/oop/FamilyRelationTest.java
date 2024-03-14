@@ -29,6 +29,7 @@ public class FamilyRelationTest {
     
     @Test 
     public void testRelationConsistency() {
+        
         assertEquals("personOne's relation and personTwo's relation should be equal", personOne.getFamilyConnections(), personTwo.get)
     }
     */

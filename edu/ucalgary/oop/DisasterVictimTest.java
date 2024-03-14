@@ -1,5 +1,12 @@
 /*Changed all ArrayLists to LinkedLists */
 
+
+/*Info about This test file
+ * Was not able to complete the tests for the interface. Will most likely highly modify it in the final submission.
+ * They should work more like setters. 
+ * 
+ */
+
 package edu.ucalgary.oop;
 
 import org.junit.Before;
@@ -9,6 +16,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Arrays;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 public class DisasterVictimTest {
     private DisasterVictim victim;
@@ -48,6 +57,21 @@ public class DisasterVictimTest {
         assertEquals("The age should be 39",39, age);
     }
 
+    /*Should throw an exception if the birthdate being set is from the future. */
+    @Test
+    public void testInvalidAgeCalculation() {
+        // Given
+        DisasterVictim victim = new DisasterVictim();
+        
+        // When setting an invalid future date
+        assertThrows(IllegalArgumentException.class, () -> {
+            victim.setDateOfBirth("2025-01-01");
+            victim.calculateAge();
+        });
+    }
+
+    /*Tests that an exception is thrown when  */
+
     /*Tests that addDietraryRestrictions(restriction: DietraryRestriction): void 
     will properly keep track of dietrary restrictions. getDietraryRestrictions is used to test the results. */
     @Test
@@ -68,7 +92,7 @@ public class DisasterVictimTest {
         public void testSetGender() {
             // Given
             DisasterVictim victim = new DisasterVictim();
-            
+
             // When
             victim.setGender("boy");
     
@@ -105,13 +129,94 @@ public class DisasterVictimTest {
         assertTrue(victim.getDietaryRestrictions().contains(DietaryRestriction.PFML));
     }    
 
-    //insert tests for addFamilyConnection
-    //insert tests for removeFamilyConnection
-    /*insert tests for Interface
-     * Enter FamilyConnection
-     * enterInfo
-     * enterMedicalRecords
+    /*Tests that we can remove FamilyConnecton can remove a FamilyRelation from the list. */
+    @Test
+    public void testRemoveFamilyConnection() {
+        // Given
+        DisasterVictim victim3 = new DisasterVictim("Steve", "2024-01-20");
+        DisasterVictim victim4 = new DisasterVictim("Mike", "2024-01-22");
+        FamilyRelation relation = new FamilyRelation(victim3, "parent", victim4);
+        
+        victim3.addFamilyConnection(relation);
+
+        victim3.removeFamilyConnection(relation);
+
+        //If it is removed, we should expect 0. 
+        assertEquals(0, victim3.getFamilyConnections().size());
+        assertFalse(victim3.getFamilyConnections().contains(relation));
+    }
+    /*Tests for the interface. 
+     * enterInfo()
+     * enterFamilyConnection():FamilyRelation
+     * enterMedicalRecords(): MedicalRecord
     */
+
+    /*Tests enterInfo from the Interface. Will test that info can be added to the constructor. */
+    @Test
+    public void testEnterInfo() {
+        // Given
+        String firstName = "John";
+        String entryDate = "2024-01-20";
+        String userInput = firstName + "\n" + entryDate;
+        InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(inputStream);
+
+        // When
+        DisasterVictim victimInfo.enterInfo();
+
+        // Then
+        assertEquals(firstName, victimInfo.getFirstName());
+        assertEquals(entryDate, victimInfo.getEntryDate());
+
+        // Reset System.in
+        System.setIn(System.in);
+    }
+
+    /*Tests enterFamilyConnection. Note differs from the UML diagram. 
+    Modifed enterFamilyConnection(personTwo:DisasterVictim): FamilyRelation */
+    @Test
+    public void testEnterFamilyConnection(){
+        DisasterVictim personOne = new DisasterVictim("Case", "2024-03-11");
+        DisasterVictim personTwo = new DisasterVictim("Mark", "2024-03-12")
+        String relationInput = "siblings";
+        InputStream inputStream = new ByteArrayInputStream(relationInput.getBytes());
+        System.setIn(inputStream);
+
+        //When
+        FamilyRelation relationFromInterface = new FamilyRelation(new EnterDisasterVictim());
+
+        //Should test whether the sibling relationship is set. 
+        assertEquals("The relationship should be siblings", relationInput, relationFromInterface.getRelationshipTo());
+
+        System.setIn(System.in);
+    }
+
+    /*Test for enterMedicalRecords() from the interface. Note this differs from the UML diagram. Now
+     * takes an argument of Location. enterMedicalRecords(location:Location)*/
+
+    @Test
+    public void testEnterMedicalRecords() {
+        // Given
+        String inputTreatmentDetails = "Urgent Care";
+        String inputDate = "2024-01-20";
+        String userInput = inputTreatmentDetails + "\n" + inputDate;
+        InputStream inputStream = new ByteArrayInputStream(userInput.getBytes());
+        System.setIn(inputStream);
+
+        // When
+        Location victimInfo = new Location(new EnterDisasterVictim());
+
+
+
+        
+        // Reset System.in
+        System.setIn(System.in);
+    }
+
+
+    /*Test FamilyRelation Consistency: Requirement 2 */
+
+
     
     // Tests that were provided with GP2. Slight modifications were made to account for requirment 1: (changing ArrayLists)
     @Test
