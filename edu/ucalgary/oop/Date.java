@@ -1,11 +1,9 @@
 /**
-@author Brandon Nguyen <a
-@version 1.1
+@author Brandon Nguyen
+@version 1.11
 */
 
-
 package edu.ucalgary.oop;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -13,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 Date class which MedicalRecord, ReliefService, and DisasterVictim will inherit from.
  */
 class Date {
-    //Store a value of date as a string. 
+    // Store a value of date as a string.
     private String date;
 
     // Constructor
@@ -24,12 +22,11 @@ class Date {
         this.date = date;
     }
 
-
     /*setDate is used to turn the string into integers and pass those in the setters.  */
     public void setDate(String date) {
         if (!isValidDateFormat(date)) {
             throw new IllegalArgumentException("Invalid date format. Expected format: YYYY-MM-DD");
-        } 
+        }
         this.date = date;
     }
 
@@ -38,7 +35,7 @@ class Date {
         return this.date;
     }
 
-    //used to check that it is in the format of YYYY-MM-DD
+    // Used to check that it is in the format of YYYY-MM-DD
     public boolean isValidDateFormat(String date) {
         try {
             LocalDate.parse(date, DateTimeFormatter.ISO_DATE);
@@ -47,5 +44,4 @@ class Date {
             return false;
         }
     }
-       
 }
