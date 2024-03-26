@@ -1,3 +1,8 @@
+/**
+@author Brandon Nguyen
+@version 1.0
+ */
+
 package edu.ucalgary.oop;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
