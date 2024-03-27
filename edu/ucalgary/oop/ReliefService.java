@@ -22,7 +22,7 @@
      // Constructor
      public ReliefService(Inquirer inquirer, DisasterVictim missingPerson, String dateOfInquiry, String infoProvided, Location lastKnownLocation) {
         super(dateOfInquiry); 
-        this.inquirer = inquirer;
+        this.inquirer = inquirer; 
          this.missingPerson = missingPerson;
          this.infoProvided = infoProvided;
          this.lastKnownLocation = lastKnownLocation;
@@ -73,6 +73,7 @@
          this.lastKnownLocation = lastKnownLocation;
      }
  
+     //modify getLogDetails to be a linkedList instead. 
      public String getLogDetails() {
         return "Inquirer: " + inquirer.getFirstName() + 
             ", Missing Person: " + missingPerson.getFirstName() + 
